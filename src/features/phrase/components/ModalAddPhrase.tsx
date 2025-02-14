@@ -9,31 +9,49 @@ import {
 } from "@mui/material";
 
 import { Close as CloseIcon } from "@mui/icons-material";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
 interface DialogAddPhraseProps {
   isDialogOpen: boolean;
   closeDialog: () => void;
   addPhrase: (phrase: string) => void;
 }
+
 const DialogAddPhrase = ({
   isDialogOpen,
   closeDialog,
   addPhrase,
 }: DialogAddPhraseProps) => {
   const [newPhrase, setNewPhrase] = useState("");
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    if (isDialogOpen) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 100);
+    }
+  }, [isDialogOpen]);
+
   const handleAddPhrase = () => {
     addPhrase(newPhrase);
     setNewPhrase("");
     closeDialog();
   };
+
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPhrase(e.target.value);
   };
+
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
+      e.preventDefault();
       addPhrase(newPhrase);
+      setNewPhrase("");
+      closeDialog();
     }
   };
+
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} fullWidth maxWidth="sm">
       <DialogTitle>Add New Phrase</DialogTitle>
@@ -46,7 +64,7 @@ const DialogAddPhrase = ({
       </IconButton>
       <DialogContent>
         <TextField
-          autoFocus
+          inputRef={inputRef}
           margin="dense"
           label="Enter your phrase"
           type="text"
@@ -76,6 +94,7 @@ const styles = {
     position: "absolute",
     right: 8,
     top: 8,
-  }
+  },
 };
+
 export default DialogAddPhrase;

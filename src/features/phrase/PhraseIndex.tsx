@@ -11,10 +11,10 @@ import { usePhraseContext } from "./context/PhrasesContext";
 const PhraseIndex = () => {
   const {
     state: {searchTerm, phrases },
-    actions: { addPhrase, setSearchTerm },
+    actions: { addPhrase, setSearchTerm, deletePhrase },
   } = usePhraseContext();
   const [isDialogToggled, handleDialogToggle] = useToggle();
-  //const [searchValue, setSearchValue] = useState("");
+  
 
   return (
     <Box sx={{ flexGrow: 1, minHeight: "100vh", bgcolor: "grey.50" }}>
@@ -25,7 +25,8 @@ const PhraseIndex = () => {
           {phrases.map((phrase) => (
             <PhraseCard
               phrase={phrase}
-              deletePhrase={() => console.log("buenos dias")}
+              deletePhrase={deletePhrase}
+              key={phrase.id}
             />
           ))}
         </Grid2>
