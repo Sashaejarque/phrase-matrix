@@ -24,7 +24,9 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
     });
   }, []);
 const deletePhrase = useCallback((id: string) => {}, []);
-const setSearchTerm = useCallback((term: string) => {}, []);
+const setSearchTerm = useCallback((term: string) => {
+  dispatch({ type: 'SET_SEARCH_TERM', payload: term });
+}, []);
 const hydratePhrases = useCallback((phrases: Phrase[]) => {
   dispatch({ type: 'HYDRATE_PHRASES', payload: phrases });
 }, []);

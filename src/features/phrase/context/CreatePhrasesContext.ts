@@ -2,8 +2,6 @@ import { createContext } from 'react';
 import PhraseState from '../types/phraseState';
 import { Phrase } from '../types/phrase';
 
-
-
 export interface PhrasesContext {
   state: PhraseState;
   actions: {

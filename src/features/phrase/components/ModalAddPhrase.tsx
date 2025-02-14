@@ -13,24 +13,34 @@ import { useState } from "react";
 interface DialogAddPhraseProps {
   isDialogOpen: boolean;
   closeDialog: () => void;
+  addPhrase: (phrase: string) => void;
 }
 const DialogAddPhrase = ({
   isDialogOpen,
   closeDialog,
+  addPhrase,
 }: DialogAddPhraseProps) => {
   const [newPhrase, setNewPhrase] = useState("");
+  const handleAddPhrase = () => {
+    addPhrase(newPhrase);
+    setNewPhrase("");
+    closeDialog();
+  };
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewPhrase(e.target.value);
+  };
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      addPhrase(newPhrase);
+    }
+  };
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} fullWidth maxWidth="sm">
       <DialogTitle>Add New Phrase</DialogTitle>
       <IconButton
         aria-label="close"
         onClick={closeDialog}
-        sx={{
-          position: "absolute",
-          right: 8,
-          top: 8,
-          color: (theme) => theme.palette.grey[500],
-        }}
+        sx={{ ...styles.icon, color: (theme) => theme.palette.grey[500] }}
       >
         <CloseIcon />
       </IconButton>
@@ -42,20 +52,16 @@ const DialogAddPhrase = ({
           type="text"
           fullWidth
           value={newPhrase}
-          onChange={(e) => setNewPhrase(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") {
-              console.log(newPhrase);
-            }
-          }}
+          onChange={onChangeInput}
+          onKeyDown={onKeyDown}
         />
       </DialogContent>
       <DialogActions>
         <Button
-          onClick={() => console.log("submit")}
+          onClick={handleAddPhrase}
           variant="contained"
           fullWidth
-          sx={{ backgroundColor: "black", color: "white", mb: 2, mx: 2 }}
+          sx={styles.dialog}
         >
           Add phrase
         </Button>
@@ -64,4 +70,12 @@ const DialogAddPhrase = ({
   );
 };
 
+const styles = {
+  dialog: { backgroundColor: "black", color: "white", mb: 2, mx: 2 },
+  icon: {
+    position: "absolute",
+    right: 8,
+    top: 8,
+  }
+};
 export default DialogAddPhrase;
