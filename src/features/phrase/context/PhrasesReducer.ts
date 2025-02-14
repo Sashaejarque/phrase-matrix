@@ -19,14 +19,15 @@ function phraseReducer(
       return { ...state, loading: true };
     case 'LOADING_FALSE':
       return { ...state, loading: false };
-    case 'HYDRATE_PHRASES':
-      return {
-        ...state,
-        phrases: action.payload.map((p) => ({
-          ...p,
-          createdAt: new Date(p.createdAt),
-        })),
-      };
+      case 'HYDRATE_PHRASES':
+        return {
+          ...state,
+          phrases: action.payload.map((p) => ({
+            ...p,
+            createdAt: new Date(p.createdAt),
+          })),
+          loading: false,
+        };
     default:
       return state;
   }

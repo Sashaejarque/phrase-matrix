@@ -7,13 +7,25 @@ import SearchBar from './components/SearchBar';
 import AddPhraseButton from './components/AddPhraseButton';
 import TopBar from './components/TopBar';
 import { usePhraseContext } from './context/PhrasesContext';
+import { CircularProgress } from "@mui/material";
+
+
 
 const PhraseIndex = () => {
   const {
-    state: { searchTerm, phrases },
+    state: { searchTerm, phrases, loading },
     actions: { addPhrase, setSearchTerm, deletePhrase },
   } = usePhraseContext();
   const [isDialogToggled, handleDialogToggle] = useToggle();
+
+  if (loading) {
+    return ( <Box sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'grey.50' }}>
+        <TopBar title="Phrases App" />
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <CircularProgress title='Loading...' size={50} sx={{ color: 'black', mt: 16}}/>
+        </Container>
+      </Box>);
+  }
 
   return (
     <Box sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'grey.50' }}>

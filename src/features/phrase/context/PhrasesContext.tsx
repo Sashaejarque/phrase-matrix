@@ -3,6 +3,7 @@ import {
   PropsWithChildren,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useReducer,
 } from 'react';
@@ -38,6 +39,34 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
       phrase.text.toLowerCase().includes(state.searchTerm.toLowerCase()),
     );
   }, [state.phrases, state.searchTerm]);
+
+  useEffect(() => {
+    const loadPhrases = async () => {
+      try {
+        const savedPhrases = localStorage.getItem('phrases');
+        
+        if (savedPhrases) {
+          const parsed = JSON.parse(savedPhrases);
+          hydratePhrases(parsed);
+        }
+        
+      } catch (error) {
+        console.error('Error loading phrases:', error);
+        localStorage.removeItem('phrases');
+      } finally {
+        dispatch({ type: 'LOADING_FALSE' });
+      }
+    };
+
+    dispatch({ type: 'LOADING_TRUE' });
+    loadPhrases();
+  }, [hydratePhrases]);
+
+  useEffect(() => {
+    if (!state.loading && state.phrases.length > 0) {
+      localStorage.setItem('phrases', JSON.stringify(state.phrases));
+    }
+  }, [state.phrases, state.loading]);
 
   const values = useMemo(
     () => ({
