@@ -8,18 +8,38 @@ import {
 } from '@mui/material';
 import { Phrase } from '../types/phrase';
 import { Close as CloseIcon } from '@mui/icons-material';
+import { useEffect, useRef, useState } from 'react';
 
 interface PhraseCardProps {
   phrase: Phrase;
   deletePhrase: (id: string) => void;
+  setRowHeight?: (height: number) => void;
 }
-const PhraseCard = ({ phrase, deletePhrase }: PhraseCardProps) => {
+
+const PhraseCard = ({
+  phrase,
+  deletePhrase,
+  setRowHeight,
+}: PhraseCardProps) => {
   const theme = useTheme();
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const [, setHeight] = useState(100);
+
+  useEffect(() => {
+    if (cardRef.current) {
+      const newHeight = cardRef.current.offsetHeight;
+      setHeight(newHeight);
+      if (setRowHeight) {
+        setRowHeight(newHeight);
+      }
+    }
+  }, [phrase.text]);
+
   return (
     <Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={phrase.id}>
       <Card
+        ref={cardRef}
         sx={{
-          height: '100%',
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',

@@ -44,12 +44,11 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
     const loadPhrases = async () => {
       try {
         const savedPhrases = localStorage.getItem('phrases');
-        
+
         if (savedPhrases) {
           const parsed = JSON.parse(savedPhrases);
           hydratePhrases(parsed);
         }
-        
       } catch (error) {
         console.error('Error loading phrases:', error);
         localStorage.removeItem('phrases');
