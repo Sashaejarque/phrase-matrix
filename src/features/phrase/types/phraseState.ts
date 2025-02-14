@@ -1,5 +1,4 @@
-import { Phrase } from "./phrase";
-
+import { Phrase } from './phrase';
 
 type PhraseState = {
   phrases: Phrase[];

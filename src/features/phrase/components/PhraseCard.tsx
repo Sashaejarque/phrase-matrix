@@ -5,9 +5,9 @@ import {
   IconButton,
   Typography,
   useTheme,
-} from "@mui/material";
-import { Phrase } from "../types/phrase";
-import { Close as CloseIcon } from "@mui/icons-material";
+} from '@mui/material';
+import { Phrase } from '../types/phrase';
+import { Close as CloseIcon } from '@mui/icons-material';
 
 interface PhraseCardProps {
   phrase: Phrase;
@@ -19,15 +19,15 @@ const PhraseCard = ({ phrase, deletePhrase }: PhraseCardProps) => {
     <Grid2 size={{ xs: 12, sm: 6, md: 4 }} key={phrase.id}>
       <Card
         sx={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          position: "relative",
-          transition: "0.3s",
-          "&:hover": {
-            transform: "translateY(-4px)",
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          position: 'relative',
+          transition: '0.3s',
+          '&:hover': {
+            transform: 'translateY(-4px)',
             boxShadow: theme.shadows[4],
-            "& .delete-button": {
+            '& .delete-button': {
               opacity: 1,
             },
           },
@@ -38,11 +38,11 @@ const PhraseCard = ({ phrase, deletePhrase }: PhraseCardProps) => {
           size="small"
           onClick={() => deletePhrase(phrase.id)}
           sx={{
-            position: "absolute",
+            position: 'absolute',
             right: 8,
             top: 8,
             opacity: 0,
-            transition: "0.2s",
+            transition: '0.2s',
           }}
         >
           <CloseIcon fontSize="small" />

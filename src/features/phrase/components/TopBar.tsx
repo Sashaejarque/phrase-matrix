@@ -1,8 +1,8 @@
-import { AppBar, Toolbar, Typography } from "@mui/material";
+import { AppBar, Toolbar, Typography } from '@mui/material';
 
 const TopBar = ({ title }: { title: string }) => {
   return (
-    <AppBar position="static" elevation={0} sx={{ backgroundColor: "black" }}>
+    <AppBar position="static" elevation={0} sx={{ backgroundColor: 'black' }}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {title}

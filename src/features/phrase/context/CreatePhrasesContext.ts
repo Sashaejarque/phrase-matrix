@@ -12,4 +12,6 @@ export interface PhrasesContext {
   };
 }
 
-export const PhrasesContext = createContext<PhrasesContext | undefined>(undefined);
+export const PhrasesContext = createContext<PhrasesContext | undefined>(
+  undefined,
+);

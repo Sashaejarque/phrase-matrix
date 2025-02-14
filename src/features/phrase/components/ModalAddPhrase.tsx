@@ -6,10 +6,10 @@ import {
   DialogTitle,
   IconButton,
   TextField,
-} from "@mui/material";
+} from '@mui/material';
 
-import { Close as CloseIcon } from "@mui/icons-material";
-import { useEffect, useRef, useState } from "react";
+import { Close as CloseIcon } from '@mui/icons-material';
+import { useEffect, useRef, useState } from 'react';
 
 interface DialogAddPhraseProps {
   isDialogOpen: boolean;
@@ -22,7 +22,7 @@ const DialogAddPhrase = ({
   closeDialog,
   addPhrase,
 }: DialogAddPhraseProps) => {
-  const [newPhrase, setNewPhrase] = useState("");
+  const [newPhrase, setNewPhrase] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const DialogAddPhrase = ({
 
   const handleAddPhrase = () => {
     addPhrase(newPhrase);
-    setNewPhrase("");
+    setNewPhrase('');
     closeDialog();
   };
 
@@ -44,10 +44,10 @@ const DialogAddPhrase = ({
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
       addPhrase(newPhrase);
-      setNewPhrase("");
+      setNewPhrase('');
       closeDialog();
     }
   };
@@ -89,9 +89,9 @@ const DialogAddPhrase = ({
 };
 
 const styles = {
-  dialog: { backgroundColor: "black", color: "white", mb: 2, mx: 2 },
+  dialog: { backgroundColor: 'black', color: 'white', mb: 2, mx: 2 },
   icon: {
-    position: "absolute",
+    position: 'absolute',
     right: 8,
     top: 8,
   },

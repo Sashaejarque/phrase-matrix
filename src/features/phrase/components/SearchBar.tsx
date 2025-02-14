@@ -1,5 +1,5 @@
-import { InputAdornment, TextField } from "@mui/material";
-import { Search as SearchIcon } from "@mui/icons-material";
+import { InputAdornment, TextField } from '@mui/material';
+import { Search as SearchIcon } from '@mui/icons-material';
 
 interface SearchBarProps {
   value: string;
@@ -22,7 +22,7 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
           ),
         },
       }}
-      sx={{ mb: 4, bgcolor: "background.paper", borderRadius: 1 }}
+      sx={{ mb: 4, bgcolor: 'background.paper', borderRadius: 1 }}
     />
   );
 };

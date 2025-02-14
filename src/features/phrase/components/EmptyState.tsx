@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography } from '@mui/material';
 
 const EmptyState = () => {
   return (
     <Box
       sx={{
-        textAlign: "center",
+        textAlign: 'center',
         py: 8,
       }}
     >

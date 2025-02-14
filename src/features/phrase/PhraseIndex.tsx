@@ -1,23 +1,22 @@
-import { Box, Container, Grid2 } from "@mui/material";
-import DialogAddPhrase from "./components/ModalAddPhrase";
-import { useToggle } from "../../hooks/useToggle";
-import EmptyState from "./components/EmptyState";
-import PhraseCard from "./components/PhraseCard";
-import SearchBar from "./components/SearchBar";
-import AddPhraseButton from "./components/AddPhraseButton";
-import TopBar from "./components/TopBar";
-import { usePhraseContext } from "./context/PhrasesContext";
+import { Box, Container, Grid2 } from '@mui/material';
+import DialogAddPhrase from './components/ModalAddPhrase';
+import { useToggle } from '../../hooks/useToggle';
+import EmptyState from './components/EmptyState';
+import PhraseCard from './components/PhraseCard';
+import SearchBar from './components/SearchBar';
+import AddPhraseButton from './components/AddPhraseButton';
+import TopBar from './components/TopBar';
+import { usePhraseContext } from './context/PhrasesContext';
 
 const PhraseIndex = () => {
   const {
-    state: {searchTerm, phrases },
+    state: { searchTerm, phrases },
     actions: { addPhrase, setSearchTerm, deletePhrase },
   } = usePhraseContext();
   const [isDialogToggled, handleDialogToggle] = useToggle();
-  
 
   return (
-    <Box sx={{ flexGrow: 1, minHeight: "100vh", bgcolor: "grey.50" }}>
+    <Box sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'grey.50' }}>
       <TopBar title="Phrases App" />
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
         <SearchBar value={searchTerm} onChange={setSearchTerm} />
