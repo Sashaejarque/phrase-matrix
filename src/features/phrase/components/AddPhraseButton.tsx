@@ -9,16 +9,23 @@ const AddPhraseButton = ({ handleDialogToggle }: AddPhraseButtonProps) => {
     <Fab
       aria-label="add"
       onClick={handleDialogToggle}
-      sx={{
-        position: 'fixed',
-        bottom: 24,
-        right: 24,
-        backgroundColor: 'black',
-      }}
+      sx={styles.fab}
+      data-testid="add-phrase-button"
     >
-      <AddIcon sx={{ color: 'white' }} />
+      <AddIcon sx={styles.icon} />
     </Fab>
   );
 };
 
+const styles = {
+  fab: {
+    position: 'fixed',
+    bottom: 24,
+    right: 24,
+    backgroundColor: 'black',
+  },
+  icon: {
+    color: 'white',
+  },
+};
 export default AddPhraseButton;

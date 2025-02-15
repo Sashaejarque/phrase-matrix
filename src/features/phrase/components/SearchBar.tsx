@@ -3,7 +3,6 @@ import { InputAdornment, TextField } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { useDebounce } from '../../../hooks/useDebounce';
 
-
 interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
@@ -28,12 +27,14 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
       placeholder="Search phrases..."
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SearchIcon color="action" />
-          </InputAdornment>
-        ),
+      slotProps={{
+        input: {
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon color="action" />
+            </InputAdornment>
+          ),
+        },
       }}
       sx={{ mb: 4, bgcolor: 'background.paper', borderRadius: 1 }}
     />

@@ -15,12 +15,18 @@ interface DialogAddPhraseProps {
   isDialogOpen: boolean;
   closeDialog: () => void;
   addPhrase: (phrase: string) => void;
+  title?: string;
+  buttonTitle?: string;
+  inputLabel?: string;
 }
 
 const DialogAddPhrase = ({
   isDialogOpen,
   closeDialog,
   addPhrase,
+  title = 'Add a new phrase',
+  buttonTitle = 'Add phrase',
+  inputLabel = 'Enter your phrase',
 }: DialogAddPhraseProps) => {
   const [newPhrase, setNewPhrase] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -33,7 +39,9 @@ const DialogAddPhrase = ({
     }
   }, [isDialogOpen]);
 
-  const handleAddPhrase = () => {
+  const handleAddPhrase = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!newPhrase.trim()) return;
+    e.preventDefault();
     addPhrase(newPhrase);
     setNewPhrase('');
     closeDialog();
@@ -44,21 +52,25 @@ const DialogAddPhrase = ({
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!newPhrase.trim()) return;
     if (e.key === 'Enter') {
       e.preventDefault();
       addPhrase(newPhrase);
       setNewPhrase('');
+      closeDialog();
+    } else if (e.key === 'Escape') {
       closeDialog();
     }
   };
 
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} fullWidth maxWidth="sm">
-      <DialogTitle>Add New Phrase</DialogTitle>
+      <DialogTitle>{title}</DialogTitle>
       <IconButton
         aria-label="close"
         onClick={closeDialog}
         sx={{ ...styles.icon, color: (theme) => theme.palette.grey[500] }}
+        data-testid="close-dialog"
       >
         <CloseIcon />
       </IconButton>
@@ -66,7 +78,7 @@ const DialogAddPhrase = ({
         <TextField
           inputRef={inputRef}
           margin="dense"
-          label="Enter your phrase"
+          label={inputLabel}
           type="text"
           fullWidth
           value={newPhrase}
@@ -79,9 +91,10 @@ const DialogAddPhrase = ({
           onClick={handleAddPhrase}
           variant="contained"
           fullWidth
+          disabled={!newPhrase.trim()}
           sx={styles.dialog}
         >
-          Add phrase
+          {buttonTitle}
         </Button>
       </DialogActions>
     </Dialog>

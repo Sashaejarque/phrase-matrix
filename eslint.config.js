@@ -2,8 +2,10 @@ import globals from 'globals';
 import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import pluginReact from 'eslint-plugin-react';
+import prettier from 'eslint-plugin-prettier';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
-/** @type {import('eslint').Linter.Config[]} */
+/** @type {import('eslint').Linter.FlatConfig[]} */
 export default [
   { files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'] },
   { languageOptions: { globals: globals.browser } },
@@ -13,6 +15,7 @@ export default [
   {
     rules: {
       'react/react-in-jsx-scope': 'off',
+      'prettier/prettier': 'error',
     },
     settings: {
       react: {
@@ -20,11 +23,10 @@ export default [
       },
     },
   },
+  eslintConfigPrettier,
   {
-    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
-    rules: {
-      'prettier/prettier': ['error'],
+    plugins: {
+      prettier: prettier,
     },
   },
-  'plugin:prettier/recommended',
 ];

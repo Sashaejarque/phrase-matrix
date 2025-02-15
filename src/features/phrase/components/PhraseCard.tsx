@@ -40,10 +40,7 @@ const PhraseCard = ({
       <Card
         ref={cardRef}
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'relative',
-          transition: '0.3s',
+          ...styles.card,
           '&:hover': {
             transform: 'translateY(-4px)',
             boxShadow: theme.shadows[4],
@@ -57,17 +54,12 @@ const PhraseCard = ({
           className="delete-button"
           size="small"
           onClick={() => deletePhrase(phrase.id)}
-          sx={{
-            position: 'absolute',
-            right: 8,
-            top: 8,
-            opacity: 0,
-            transition: '0.2s',
-          }}
+          sx={styles.icon}
+          data-testid="delete-button"
         >
           <CloseIcon fontSize="small" />
         </IconButton>
-        <CardContent sx={{ flexGrow: 1, pt: 4 }}>
+        <CardContent sx={styles.cardContent}>
           <Typography variant="body1">{phrase.text}</Typography>
         </CardContent>
       </Card>
@@ -75,4 +67,23 @@ const PhraseCard = ({
   );
 };
 
+const styles = {
+  card: {
+    display: 'flex',
+    flexDirection: 'column',
+    position: 'relative',
+    transition: '0.3s',
+  },
+  icon: {
+    position: 'absolute',
+    right: 8,
+    top: 8,
+    opacity: 0,
+    transition: '0.2s',
+  },
+  cardContent: {
+    flexGrow: 1,
+    pt: 4,
+  },
+};
 export default PhraseCard;
