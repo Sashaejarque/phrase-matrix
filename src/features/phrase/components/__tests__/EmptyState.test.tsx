@@ -1,10 +1,16 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import EmptyState from '../EmptyState';
+
+vi.mock('react-lottie', () => ({
+  default: vi.fn(() => <div data-testid="mock-lottie" />),
+}));
 
 describe('EmptyState Component', () => {
   it('should render the default message', () => {
-    render(<EmptyState />);
+    render(
+      <EmptyState message="No phrases yet. Click the + button to add one!" />,
+    );
 
     expect(
       screen.getByText('No phrases yet. Click the + button to add one!'),

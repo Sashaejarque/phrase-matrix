@@ -12,6 +12,14 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'html', 'lcov'],
       reportsDirectory: './coverage',
+      exclude: [
+        'src/main.tsx',
+        'src/App.tsx',
+        'src/utils/*',
+        'eslint.config.js',
+        'lint-staged.config.js',
+        'vite.config.ts',
+      ],
     },
   },
 });

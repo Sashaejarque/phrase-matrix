@@ -20,7 +20,7 @@ const Loader = ({ text = 'Loading...' }: { text: string }) => {
       }}
     >
       <Lottie options={defaultOptions} />
-      <Typography>{text}</Typography>
+      <Typography data-testid="loading">{text}</Typography>
     </Stack>
   );
 };

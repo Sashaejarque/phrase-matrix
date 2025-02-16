@@ -10,7 +10,13 @@ describe('SearchBar Component', () => {
   const mockOnChange = vi.fn();
 
   const setup = (value = '') => {
-    return render(<SearchBar value={value} onChange={mockOnChange} />);
+    return render(
+      <SearchBar
+        value={value}
+        onChange={mockOnChange}
+        placeholder="Search phrases..."
+      />,
+    );
   };
 
   afterEach(() => {
@@ -42,7 +48,13 @@ describe('SearchBar Component', () => {
   });
   test('updates when value prop changes', () => {
     const { rerender } = setup('test');
-    rerender(<SearchBar value="new value" onChange={mockOnChange} />);
+    rerender(
+      <SearchBar
+        value="new value"
+        onChange={mockOnChange}
+        placeholder="Search phrases..."
+      />,
+    );
     expect(screen.getByPlaceholderText('Search phrases...')).toHaveValue(
       'new value',
     );

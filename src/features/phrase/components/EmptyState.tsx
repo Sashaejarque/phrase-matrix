@@ -3,10 +3,9 @@ import Lottie from 'react-lottie';
 import EmptyLottie from '../../../utils/lotties/emptyState.json';
 
 interface EmptyStateProps {
-  t: (key: string) => string;
-  message?: string;
+  message: string;
 }
-const EmptyState = ({ t, message = 'empty_phrases' }: EmptyStateProps) => {
+const EmptyState = ({ message }: EmptyStateProps) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -17,7 +16,7 @@ const EmptyState = ({ t, message = 'empty_phrases' }: EmptyStateProps) => {
     <Box sx={styles.box}>
       <Lottie options={defaultOptions} />
       <Typography variant="body1" color="text.secondary">
-        {t(message)}
+        {message}
       </Typography>
     </Box>
   );

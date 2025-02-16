@@ -36,8 +36,12 @@ const PhraseIndex = () => {
     <Box sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'grey.50' }}>
       <TopBar title={t('title_app')} />
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <SearchBar value={searchTerm} onChange={setSearchTerm} t={t} />
-        {!hasPhrases && <EmptyState t={t} />}
+        <SearchBar
+          value={searchTerm}
+          onChange={setSearchTerm}
+          placeholder={t('search_placeholder')}
+        />
+        {!hasPhrases && <EmptyState message={t('empty_phrases')} />}
         {hasPhrases && (
           <Suspense
             fallback={
