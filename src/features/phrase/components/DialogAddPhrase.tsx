@@ -16,18 +16,18 @@ interface DialogAddPhraseProps {
   isDialogOpen: boolean;
   closeDialog: () => void;
   addPhrase: (phrase: string) => void;
-  title?: string;
-  buttonTitle?: string;
-  inputLabel?: string;
+  title: string;
+  buttonTitle: string;
+  inputLabel: string;
 }
 
 const DialogAddPhrase = ({
   isDialogOpen,
   closeDialog,
   addPhrase,
-  title = 'Add a new phrase',
-  buttonTitle = 'Add phrase',
-  inputLabel = 'Enter your phrase',
+  title,
+  buttonTitle,
+  inputLabel,
 }: DialogAddPhraseProps) => {
   const [newPhrase, setNewPhrase] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);

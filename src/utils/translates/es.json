@@ -1,0 +1,15 @@
+{
+  "add_new_phrase": "Agregar una nueva frase",
+  "add_phrase": "Agregar frase",
+  "couldnt_delete_phrase": "No se pudo eliminar la frase.",
+  "empty_phrases": "¡Aún no hay frases! Haz clic en el botón + para agregar una.",
+  "enter_phrase": "Ingresa tu frase",
+  "error_loading_phrases": "Error al cargar las frases.",
+  "lang": "Idioma",
+  "loading": "Cargando...",
+  "phrase_added_success": "Frase agregada correctamente!",
+  "phrase_deleted_correctly": "Frase eliminada correctamente!",
+  "phrase_error": "No se pudo agregar la frase.",
+  "search_placeholder": "Buscar frases...",
+  "title_app": "Aplicación de frases"
+}

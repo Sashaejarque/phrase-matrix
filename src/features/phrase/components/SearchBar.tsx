@@ -6,9 +6,10 @@ import { useDebounce } from '../../../hooks/useDebounce';
 interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
+  t: (key: string) => string;
 }
 
-const SearchBar = ({ value, onChange }: SearchBarProps) => {
+const SearchBar = ({ value, onChange, t }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState(value);
   const debouncedValue = useDebounce(inputValue, 500);
 
@@ -24,7 +25,7 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
     <TextField
       fullWidth
       variant="outlined"
-      placeholder="Search phrases..."
+      placeholder={t('search_placeholder')}
       value={inputValue}
       onChange={(e) => setInputValue(e.target.value)}
       slotProps={{

@@ -11,6 +11,7 @@ import phraseReducer from './PhrasesReducer';
 import { PhrasesContext } from './CreatePhrasesContext';
 import { Phrase } from '../types/phrase';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(phraseReducer, {
@@ -19,6 +20,7 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
     searchTerm: '',
     error: null,
   });
+  const { t } = useTranslation();
 
   const setError = useCallback((message: string) => {
     dispatch({ type: 'SET_ERROR', payload: message });
@@ -31,20 +33,20 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
         type: 'ADD_PHRASE',
         payload: { id: crypto.randomUUID(), text, createdAt: new Date() },
       });
-      toast.success('Frase agregada correctamente!');
+      toast.success(t('phrase_added_success'));
     } catch (error) {
       console.error('Error adding phrase:', error);
-      setError('No se pudo agregar la frase.');
+      setError(t('phrase_error'));
     }
   }, []);
 
   const deletePhrase = useCallback((id: string) => {
     try {
       dispatch({ type: 'DELETE_PHRASE', payload: id });
-      toast.success('Frase eliminada correctamente!');
+      toast.success(t('phrase_deleted_correctly'));
     } catch (error) {
       console.error('Error deleting phrase:', error);
-      setError('No se pudo eliminar la frase.');
+      setError(t('couldnt_delete_phrase'));
     }
   }, []);
 
@@ -55,8 +57,8 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
   const hydratePhrases = useCallback((phrases: Phrase[]) => {
     try {
       if (!Array.isArray(phrases)) {
+        toast.error(t('error_loading_phrases'));
         throw new Error('Invalid data: phrases must be an array');
-        toast.error('Error al cargar las frases.');
       }
       dispatch({ type: 'HYDRATE_PHRASES', payload: phrases });
     } catch (error) {
@@ -83,7 +85,7 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
         }
       } catch (error) {
         console.error('Error loading phrases:', error);
-        setError('Error al cargar las frases.');
+        setError(t('error_loading_phrases'));
         localStorage.removeItem('phrases');
       } finally {
         dispatch({ type: 'LOADING_FALSE' });

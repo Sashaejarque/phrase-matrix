@@ -2,7 +2,7 @@ import { Stack, Typography } from '@mui/material';
 import Lottie from 'react-lottie';
 import LoaderLottie from '../../../utils/lotties/loader.json';
 
-const Loader = () => {
+const Loader = ({ text = 'Loading...' }: { text: string }) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -20,7 +20,7 @@ const Loader = () => {
       }}
     >
       <Lottie options={defaultOptions} />
-      <Typography>Loading...</Typography>
+      <Typography>{text}</Typography>
     </Stack>
   );
 };

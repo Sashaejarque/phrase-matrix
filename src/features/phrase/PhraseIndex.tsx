@@ -7,6 +7,7 @@ import AddPhraseButton from './components/AddPhraseButton';
 import TopBar from './components/TopBar';
 import { usePhraseContext } from './context/PhrasesContext';
 import Loader from './components/Loader';
+import { useTranslation } from 'react-i18next';
 
 const DialogAddPhrase = lazy(() => import('./components/DialogAddPhrase'));
 const MemoizedPhraseList = lazy(
@@ -18,31 +19,31 @@ const PhraseIndex = () => {
     state: { searchTerm, phrases, loading },
     actions: { addPhrase, setSearchTerm, deletePhrase },
   } = usePhraseContext();
-
+  const { t } = useTranslation();
   const [isDialogToggled, handleDialogToggle] = useToggle();
 
   const hasPhrases = phrases.length > 0;
   if (loading) {
     return (
       <>
-        <TopBar title="Phrases App" />
-        <Loader />
+        <TopBar title={t('title_app')} />
+        <Loader text={t('loading')} />
       </>
     );
   }
+
   return (
     <Box sx={{ flexGrow: 1, minHeight: '100vh', bgcolor: 'grey.50' }}>
-      <TopBar title="Phrases App" />
+      <TopBar title={t('title_app')} />
       <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-        <SearchBar value={searchTerm} onChange={setSearchTerm} />
-
-        {!hasPhrases && <EmptyState />}
+        <SearchBar value={searchTerm} onChange={setSearchTerm} t={t} />
+        {!hasPhrases && <EmptyState t={t} />}
         {hasPhrases && (
           <Suspense
             fallback={
               <Stack alignItems="center" justifyContent="center" sx={{ mt: 4 }}>
                 <CircularProgress
-                  title="Loading..."
+                  title={t('loading')}
                   size={50}
                   sx={{ color: 'black' }}
                 />
@@ -58,6 +59,9 @@ const PhraseIndex = () => {
             closeDialog={handleDialogToggle}
             isDialogOpen={isDialogToggled}
             addPhrase={addPhrase}
+            title={t('add_new_phrase')}
+            buttonTitle={t('add_phrase')}
+            inputLabel={t('enter_phrase')}
           />
         </Suspense>
       </Container>

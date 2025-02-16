@@ -1,0 +1,15 @@
+{
+  "add_new_phrase": "Add a new phrase",
+  "add_phrase": "Add phrase",
+  "couldnt_delete_phrase": "Couldn't delete the phrase.",
+  "empty_phrases": "No phrases yet. Click the + button to add one!",
+  "enter_phrase": "Enter your phrase",
+  "error_loading_phrases": "Error loading phrases.",
+  "lang": "Language",
+  "loading": "Loading...",
+  "phrase_added_success": "Phrase added successfully!",
+  "phrase_deleted_correctly": "Phrase deleted correctly!",
+  "phrase_error": "Couldn't add the phrase.",
+  "search_placeholder": "Search phrases...",
+  "title_app": "Phrases app"
+}
