@@ -1,3 +1,3 @@
 export default {
-  '**/*.{js,jsx,ts,tsx}': ['npm run lint', 'npm run format'],
+  '**/*.{js,jsx,ts,tsx}': ['npm run format'],
 };

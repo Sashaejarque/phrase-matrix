@@ -1,4 +1,6 @@
 import { Box, Typography } from '@mui/material';
+import Lottie from 'react-lottie';
+import EmptyLottie from '../../../utils/lotties/emptyState.json';
 
 interface EmptyStateProps {
   message?: string;
@@ -9,8 +11,15 @@ const defaultEmptyStateMessage =
 const EmptyState = ({
   message = defaultEmptyStateMessage,
 }: EmptyStateProps) => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: EmptyLottie,
+  };
+
   return (
     <Box sx={styles.box}>
+      <Lottie options={defaultOptions} />
       <Typography variant="body1" color="text.secondary">
         {message}
       </Typography>
@@ -21,7 +30,6 @@ const EmptyState = ({
 const styles = {
   box: {
     textAlign: 'center',
-    py: 8,
   },
 };
 export default EmptyState;

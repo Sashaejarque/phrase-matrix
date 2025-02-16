@@ -67,12 +67,14 @@ describe('PhraseIndex', () => {
         phrases: [],
         searchTerm: '',
         loading: true,
+        error: null,
       },
       actions: {
         addPhrase: vi.fn(),
         setSearchTerm: vi.fn(),
         deletePhrase: vi.fn(),
         hydratePhrases: vi.fn(),
+        setError: vi.fn(),
       },
     };
 

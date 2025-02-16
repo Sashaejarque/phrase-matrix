@@ -10,6 +10,7 @@ import {
 import phraseReducer from './PhrasesReducer';
 import { PhrasesContext } from './CreatePhrasesContext';
 import { Phrase } from '../types/phrase';
+import { toast } from 'react-toastify';
 
 export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(phraseReducer, {
@@ -21,6 +22,7 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
 
   const setError = useCallback((message: string) => {
     dispatch({ type: 'SET_ERROR', payload: message });
+    toast.error(message);
   }, []);
 
   const addPhrase = useCallback((text: string) => {
@@ -29,6 +31,7 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
         type: 'ADD_PHRASE',
         payload: { id: crypto.randomUUID(), text, createdAt: new Date() },
       });
+      toast.success('Frase agregada correctamente!');
     } catch (error) {
       console.error('Error adding phrase:', error);
       setError('No se pudo agregar la frase.');
@@ -38,6 +41,7 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
   const deletePhrase = useCallback((id: string) => {
     try {
       dispatch({ type: 'DELETE_PHRASE', payload: id });
+      toast.success('Frase eliminada correctamente!');
     } catch (error) {
       console.error('Error deleting phrase:', error);
       setError('No se pudo eliminar la frase.');
@@ -52,6 +56,7 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
     try {
       if (!Array.isArray(phrases)) {
         throw new Error('Invalid data: phrases must be an array');
+        toast.error('Error al cargar las frases.');
       }
       dispatch({ type: 'HYDRATE_PHRASES', payload: phrases });
     } catch (error) {
@@ -69,6 +74,7 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
   useEffect(() => {
     const loadPhrases = async () => {
       try {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         const savedPhrases = localStorage.getItem('phrases');
 
         if (savedPhrases) {
@@ -89,8 +95,12 @@ export const PhrasesProvider: FC<PropsWithChildren> = ({ children }) => {
   }, [hydratePhrases, setError]);
 
   useEffect(() => {
-    if (!state.loading && state.phrases.length > 0) {
-      localStorage.setItem('phrases', JSON.stringify(state.phrases));
+    if (!state.loading) {
+      if (state.phrases.length > 0) {
+        localStorage.setItem('phrases', JSON.stringify(state.phrases));
+      } else {
+        localStorage.removeItem('phrases');
+      }
     }
   }, [state.phrases, state.loading]);
 
