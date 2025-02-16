@@ -25,6 +25,10 @@ interface hydratePhrases {
   type: 'HYDRATE_PHRASES';
   payload: Phrase[];
 }
+interface setError {
+  type: 'SET_ERROR';
+  payload: string;
+}
 
 type PhrasesActions =
   | addPhrase
@@ -32,6 +36,7 @@ type PhrasesActions =
   | setSearchTerm
   | LoadingTrue
   | LoadingFalse
-  | hydratePhrases;
+  | hydratePhrases
+  | setError;
 
 export default PhrasesActions;

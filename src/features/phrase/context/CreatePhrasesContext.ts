@@ -9,6 +9,7 @@ export interface PhrasesContext {
     deletePhrase: (id: string) => void;
     setSearchTerm: (term: string) => void;
     hydratePhrases: (phrases: Phrase[]) => void;
+    setError: (error: string) => void;
   };
 }
 
