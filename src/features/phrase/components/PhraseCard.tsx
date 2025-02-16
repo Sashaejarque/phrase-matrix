@@ -41,11 +41,13 @@ const PhraseCard = ({
         ref={cardRef}
         sx={{
           ...styles.card,
-          '&:hover': {
-            transform: 'translateY(-4px)',
-            boxShadow: theme.shadows[4],
-            '& .delete-button': {
-              opacity: 1,
+          '@media (min-width: 600px)': {
+            '&:hover': {
+              transform: 'translateY(-4px)',
+              boxShadow: theme.shadows[4],
+              '& .delete-button': {
+                opacity: 1,
+              },
             },
           },
         }}
@@ -54,8 +56,16 @@ const PhraseCard = ({
           className="delete-button"
           size="small"
           onClick={() => deletePhrase(phrase.id)}
-          sx={styles.icon}
           data-testid="delete-button"
+          sx={{
+            ...styles.icon,
+            '@media (max-width: 600px)': {
+              opacity: 1,
+            },
+            '&:hover': {
+              opacity: 1,
+            },
+          }}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
@@ -86,4 +96,5 @@ const styles = {
     pt: 4,
   },
 };
+
 export default PhraseCard;

@@ -36,9 +36,37 @@ const SearchBar = ({ value, onChange }: SearchBarProps) => {
           ),
         },
       }}
-      sx={{ mb: 4, bgcolor: 'background.paper', borderRadius: 1 }}
+      sx={styles.searchBar}
     />
   );
+};
+
+const styles = {
+  searchBar: {
+    mb: 4,
+    bgcolor: 'background.paper',
+    borderRadius: 1,
+    '& .MuiInputBase-input': {
+      color: 'black',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'black',
+      },
+      '&:hover fieldset': {
+        borderColor: 'black',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'black',
+      },
+    },
+    '& .MuiInputLabel-root': {
+      color: 'black',
+    },
+    '& .MuiInputLabel-root.Mui-focused': {
+      color: 'black',
+    },
+  },
 };
 
 export default SearchBar;

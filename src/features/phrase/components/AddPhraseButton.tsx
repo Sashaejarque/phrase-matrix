@@ -23,6 +23,11 @@ const styles = {
     bottom: 24,
     right: 24,
     backgroundColor: 'black',
+    transition: 'background-color 0.3s ease, transform 0.3s ease',
+    '&:hover': {
+      backgroundColor: 'gray',
+      transform: 'scale(1.1)',
+    },
   },
   icon: {
     color: 'white',
