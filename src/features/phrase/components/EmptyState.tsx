@@ -30,6 +30,10 @@ const EmptyState = ({
 const styles = {
   box: {
     textAlign: 'center',
+    maxWidth: '400px',
+    maxHeight: '400px',
+    margin: '0 auto',
+    padding: '20px',
   },
 };
 export default EmptyState;

@@ -9,7 +9,16 @@ const Loader = () => {
     animationData: LoaderLottie,
   };
   return (
-    <Stack spacing={2} alignItems="center">
+    <Stack
+      spacing={2}
+      alignItems="center"
+      sx={{
+        maxWidth: '500px',
+        maxHeight: '500px',
+        margin: '0 auto',
+        padding: '20px',
+      }}
+    >
       <Lottie options={defaultOptions} />
       <Typography>Loading...</Typography>
     </Stack>
