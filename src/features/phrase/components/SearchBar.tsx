@@ -12,15 +12,12 @@ interface SearchBarProps {
 const SearchBar = ({ value, onChange, placeholder }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState(value);
   const debouncedValue = useDebounce(inputValue, 500);
-
   useEffect(() => {
     onChange(debouncedValue);
   }, [debouncedValue, onChange]);
-
   useEffect(() => {
     setInputValue(value);
   }, [value]);
-
   return (
     <TextField
       fullWidth
@@ -32,7 +29,7 @@ const SearchBar = ({ value, onChange, placeholder }: SearchBarProps) => {
         input: {
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon color="action" />
+              <SearchIcon sx={{ color: 'primary.main' }} />
             </InputAdornment>
           ),
         },
@@ -44,30 +41,15 @@ const SearchBar = ({ value, onChange, placeholder }: SearchBarProps) => {
 
 const styles = {
   searchBar: {
-    mb: 4,
-    bgcolor: 'background.paper',
-    borderRadius: 1,
-    '& .MuiInputBase-input': {
-      color: 'black',
-    },
+    mb: 1,
     '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'black',
-      },
-      '&:hover fieldset': {
-        borderColor: 'black',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'black',
-      },
+      borderRadius: 3,
+      bgcolor: 'background.default',
+      '& fieldset': { borderColor: '#e5e1d7' },
+      '&:hover fieldset': { borderColor: 'primary.main' },
+      '&.Mui-focused fieldset': { borderColor: 'primary.main', borderWidth: 1 },
     },
-    '& .MuiInputLabel-root': {
-      color: 'black',
-    },
-    '& .MuiInputLabel-root.Mui-focused': {
-      color: 'black',
-    },
+    '& .MuiInputBase-input': { py: 1.75 },
   },
 };
-
 export default SearchBar;

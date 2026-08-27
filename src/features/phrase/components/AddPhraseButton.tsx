@@ -1,36 +1,30 @@
-import { Fab } from '@mui/material';
+import { Fab, Tooltip } from '@mui/material';
 import { Add as AddIcon } from '@mui/icons-material';
-
 interface AddPhraseButtonProps {
   handleDialogToggle: () => void;
 }
-const AddPhraseButton = ({ handleDialogToggle }: AddPhraseButtonProps) => {
-  return (
+const AddPhraseButton = ({ handleDialogToggle }: AddPhraseButtonProps) => (
+  <Tooltip title="Add phrase">
     <Fab
       aria-label="add"
       onClick={handleDialogToggle}
       sx={styles.fab}
       data-testid="add-phrase-button"
     >
-      <AddIcon sx={styles.icon} />
+      <AddIcon sx={{ color: 'text.primary' }} />
     </Fab>
-  );
-};
-
+  </Tooltip>
+);
 const styles = {
   fab: {
     position: 'fixed',
-    bottom: 24,
-    right: 24,
-    backgroundColor: 'black',
-    transition: 'background-color 0.3s ease, transform 0.3s ease',
-    '&:hover': {
-      backgroundColor: 'gray',
-      transform: 'scale(1.1)',
-    },
-  },
-  icon: {
-    color: 'white',
+    bottom: { xs: 20, md: 32 },
+    right: { xs: 20, md: 32 },
+    bgcolor: 'secondary.main',
+    color: 'text.primary',
+    boxShadow: '0 12px 28px rgba(31,77,58,.2)',
+    '&:hover': { bgcolor: 'secondary.main', transform: 'translateY(-3px)' },
+    transition: 'transform .2s ease',
   },
 };
 export default AddPhraseButton;
