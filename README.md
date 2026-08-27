@@ -1,6 +1,7 @@
 # Phrase Manager App
 
 ## 🚀 Project Overview
+
 Este proyecto es una aplicación en React que permite **agregar, buscar y eliminar frases**, mostrando cada frase en una card dentro de una matriz. A medida que el usuario escribe en la barra de búsqueda, las frases se filtran dinámicamente.
 
 ---
@@ -22,6 +23,7 @@ Este proyecto es una aplicación en React que permite **agregar, buscar y elimin
 ---
 
 ## ✨ Features Implementadas
+
 - **Gestión de estado con Context API** para manejar las frases.
 - **Búsqueda en tiempo real con debouncing** para mejorar la performance.
 - **Persistencia en LocalStorage** para guardar frases entre sesiones.
@@ -38,12 +40,14 @@ Este proyecto es una aplicación en React que permite **agregar, buscar y elimin
 ## 📦 Instalación y Configuración
 
 1. Clonar el repositorio:
+
    ```sh
    git clone https://github.com/Sashaejarque/phrase-matrix.git
    cd phrase-matrix
    ```
 
 2. Instalar dependencias:
+
    ```sh
    npm install
    ```
@@ -58,13 +62,15 @@ Este proyecto es una aplicación en React que permite **agregar, buscar y elimin
 ## ✅ Pruebas
 
 Ejecutar los tests unitarios:
+
 ```sh
 npm run test
 ```
+
 Ver cobertura de pruebas:
+
 ```sh
 npm run test:coverage
 ```
 
 ---
-

@@ -11,5 +11,9 @@
   "phrase_deleted_correctly": "Phrase deleted correctly!",
   "phrase_error": "Couldn't add the phrase.",
   "search_placeholder": "Search phrases...",
-  "title_app": "Phrases app"
+  "title_app": "Phrases app",
+  "hero_eyebrow": "PERSONAL KNOWLEDGE BASE",
+  "hero_title_start": "Your phrases,",
+  "hero_title_accent": "in motion.",
+  "hero_description": "A focused space for language, ideas and the words worth keeping."
 }

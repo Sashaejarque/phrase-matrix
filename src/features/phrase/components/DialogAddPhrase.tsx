@@ -6,12 +6,11 @@ import {
   DialogTitle,
   IconButton,
   TextField,
+  Typography,
 } from '@mui/material';
-
 import { Close as CloseIcon } from '@mui/icons-material';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-
 interface DialogAddPhraseProps {
   isDialogOpen: boolean;
   closeDialog: () => void;
@@ -20,7 +19,6 @@ interface DialogAddPhraseProps {
   buttonTitle: string;
   inputLabel: string;
 }
-
 const DialogAddPhrase = ({
   isDialogOpen,
   closeDialog,
@@ -31,76 +29,67 @@ const DialogAddPhrase = ({
 }: DialogAddPhraseProps) => {
   const [newPhrase, setNewPhrase] = useState('');
   const inputRef = useRef<HTMLInputElement | null>(null);
-
   useEffect(() => {
-    if (isDialogOpen) {
-      setTimeout(() => {
-        inputRef.current?.focus();
-      }, 100);
-    }
+    if (isDialogOpen) setTimeout(() => inputRef.current?.focus(), 100);
   }, [isDialogOpen]);
-
-  const handleAddPhrase = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const submit = () => {
     if (!newPhrase.trim()) return;
-    e.preventDefault();
     addPhrase(newPhrase);
     setNewPhrase('');
     closeDialog();
   };
-
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewPhrase(e.target.value);
-  };
-
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (!newPhrase.trim()) return;
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.nativeEvent.isComposing && e.keyCode !== 229) {
       e.preventDefault();
-      addPhrase(newPhrase);
-      setNewPhrase('');
-      closeDialog();
-    } else if (e.key === 'Escape') {
-      closeDialog();
-    }
+      submit();
+    } else if (e.key === 'Escape') closeDialog();
   };
-
   return (
     <Dialog open={isDialogOpen} onClose={closeDialog} fullWidth maxWidth="sm">
       <motion.div
-        initial={{ opacity: 0, y: -50 }}
+        initial={{ opacity: 0, y: -24 }}
         animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 50 }}
-        transition={{ duration: 0.4 }}
+        transition={{ duration: 0.3 }}
       >
-        <DialogTitle>{title}</DialogTitle>
+        <DialogTitle sx={{ pb: 1, pr: 6 }}>
+          {title}
+          <Typography
+            sx={{
+              color: 'text.secondary',
+              fontSize: 13,
+              fontWeight: 400,
+              mt: 0.5,
+            }}
+          >
+            Capture a thought worth remembering.
+          </Typography>
+        </DialogTitle>
         <IconButton
           aria-label="close"
           onClick={closeDialog}
-          sx={{ ...styles.icon, color: (theme) => theme.palette.grey[500] }}
+          sx={styles.icon}
           data-testid="close-dialog"
         >
           <CloseIcon />
         </IconButton>
-        <DialogContent sx={{ mt: -2 }}>
+        <DialogContent>
           <TextField
             inputRef={inputRef}
-            margin="dense"
             label={inputLabel}
-            type="text"
             fullWidth
             value={newPhrase}
-            onChange={onChangeInput}
+            onChange={(e) => setNewPhrase(e.target.value)}
             onKeyDown={onKeyDown}
             sx={styles.textField}
           />
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{ px: 3, pb: 2 }}>
           <Button
-            onClick={handleAddPhrase}
+            onClick={submit}
             variant="contained"
             fullWidth
             disabled={!newPhrase.trim()}
-            sx={styles.dialog}
+            sx={{ py: 1.5 }}
           >
             {buttonTitle}
           </Button>
@@ -109,41 +98,14 @@ const DialogAddPhrase = ({
     </Dialog>
   );
 };
-
 const styles = {
-  dialog: {
-    backgroundColor: 'black',
-    color: 'white',
-    mb: 2,
-    mx: 2,
-  },
-  icon: {
-    position: 'absolute',
-    right: 8,
-    top: 8,
-  },
+  icon: { position: 'absolute', right: 16, top: 16, color: 'text.secondary' },
   textField: {
-    '& .MuiInputBase-input': {
-      color: 'black',
-    },
-    '& .MuiInputLabel-root': {
-      color: 'black',
-    },
+    mt: 1,
     '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'black',
-      },
-      '&:hover fieldset': {
-        borderColor: 'black',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'black',
-      },
-    },
-    '& .MuiInputLabel-root.Mui-focused': {
-      color: 'black',
+      borderRadius: 2,
+      '&.Mui-focused fieldset': { borderColor: 'primary.main' },
     },
   },
 };
-
 export default DialogAddPhrase;

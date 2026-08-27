@@ -11,5 +11,9 @@
   "phrase_deleted_correctly": "Frase eliminada correctamente!",
   "phrase_error": "No se pudo agregar la frase.",
   "search_placeholder": "Buscar frases...",
-  "title_app": "Aplicación de frases"
+  "title_app": "Aplicación de frases",
+  "hero_eyebrow": "BASE DE CONOCIMIENTO PERSONAL",
+  "hero_title_start": "Tus frases,",
+  "hero_title_accent": "en movimiento.",
+  "hero_description": "Un espacio enfocado para el lenguaje, las ideas y las palabras que vale la pena conservar."
 }
