@@ -6,11 +6,18 @@ interface EmptyStateProps {
 }
 const EmptyState = ({ message }: EmptyStateProps) => (
   <Box sx={styles.box}>
-    <Lottie
-      options={{ loop: true, autoplay: true, animationData: EmptyLottie }}
-      height={180}
-      width={180}
-    />
+    <Box
+      sx={{
+        display: 'inline-flex',
+        filter: 'hue-rotate(78deg) saturate(0.72) brightness(0.94)',
+      }}
+    >
+      <Lottie
+        options={{ loop: true, autoplay: true, animationData: EmptyLottie }}
+        height={180}
+        width={180}
+      />
+    </Box>
     <Typography variant="body1" sx={{ color: 'text.secondary', fontSize: 14 }}>
       {message}
     </Typography>

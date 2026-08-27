@@ -63,16 +63,16 @@ const PhraseIndex = () => {
                 mb: 1,
               }}
             >
-              PERSONAL KNOWLEDGE BASE
+              {t('hero_eyebrow')}
             </Typography>
             <Typography
               variant="h1"
               sx={{ fontSize: { xs: 42, md: 64 }, lineHeight: 0.98 }}
             >
-              Your phrases,
+              {t('hero_title_start')}
               <br />
               <Box component="span" sx={{ color: 'primary.main' }}>
-                in motion.
+                {t('hero_title_accent')}
               </Box>
             </Typography>
           </Box>
@@ -85,7 +85,7 @@ const PhraseIndex = () => {
               lineHeight: 1.5,
             }}
           >
-            A focused space for language, ideas and the words worth keeping.
+            {t('hero_description')}
           </Typography>
         </Box>
         <Box
@@ -149,10 +149,12 @@ const PhraseIndex = () => {
                 </Stack>
               }
             >
-              <MemoizedPhraseList
-                phrases={phrases}
-                deletePhrase={deletePhrase}
-              />
+              <Box sx={{ mt: 3 }}>
+                <MemoizedPhraseList
+                  phrases={phrases}
+                  deletePhrase={deletePhrase}
+                />
+              </Box>
             </Suspense>
           )}
         </Box>

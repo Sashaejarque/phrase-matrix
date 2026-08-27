@@ -79,7 +79,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
-    minHeight: 148,
+    minHeight: 132,
     p: 2.5,
     border: '1px solid #e5e1d7',
     borderRadius: 3,
@@ -95,6 +95,6 @@ const styles = {
     '@media (max-width: 600px)': { opacity: 1 },
     '&:hover': { color: 'primary.main' },
   },
-  cardContent: { flexGrow: 1, p: 0, pt: 3 },
+  cardContent: { flexGrow: 1, p: 0, pt: 2 },
 };
 export default PhraseCard;
