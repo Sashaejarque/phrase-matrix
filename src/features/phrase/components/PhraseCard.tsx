@@ -4,7 +4,6 @@ import {
   Grid2,
   IconButton,
   Typography,
-  useTheme,
 } from '@mui/material';
 import { Phrase } from '../types/phrase';
 import { Close as CloseIcon } from '@mui/icons-material';
@@ -20,7 +19,6 @@ const PhraseCard = ({
   deletePhrase,
   setRowHeight,
 }: PhraseCardProps) => {
-  const theme = useTheme();
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [, setHeight] = useState(100);
   useEffect(() => {
@@ -37,11 +35,7 @@ const PhraseCard = ({
         sx={{
           ...styles.card,
           '@media (min-width: 600px)': {
-            '&:hover': {
-              transform: 'translateY(-4px)',
-              boxShadow: theme.shadows[3],
-              '& .delete-button': { opacity: 1 },
-            },
+            '&:hover .delete-button': { opacity: 1 },
           },
         }}
       >
@@ -84,7 +78,6 @@ const styles = {
     border: '1px solid #e5e1d7',
     borderRadius: 3,
     boxShadow: 'none',
-    transition: 'transform .25s ease, box-shadow .25s ease',
   },
   icon: {
     position: 'absolute',

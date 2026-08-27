@@ -12,7 +12,6 @@ import SearchBar from './components/SearchBar';
 import AddPhraseButton from './components/AddPhraseButton';
 import TopBar from './components/TopBar';
 import { usePhraseContext } from './context/PhrasesContext';
-import Loader from './components/Loader';
 import { useTranslation } from 'react-i18next';
 
 const DialogAddPhrase = lazy(() => import('./components/DialogAddPhrase'));
@@ -22,20 +21,12 @@ const MemoizedPhraseList = lazy(
 
 const PhraseIndex = () => {
   const {
-    state: { searchTerm, phrases, loading },
+    state: { searchTerm, phrases },
     actions: { addPhrase, setSearchTerm, deletePhrase },
   } = usePhraseContext();
   const { t } = useTranslation();
   const [isDialogToggled, handleDialogToggle] = useToggle();
   const hasPhrases = phrases.length > 0;
-
-  if (loading)
-    return (
-      <>
-        <TopBar title={t('title_app')} />
-        <Loader text={t('loading')} />
-      </>
-    );
 
   return (
     <Box sx={{ minHeight: '100vh', bgcolor: 'background.default' }}>
